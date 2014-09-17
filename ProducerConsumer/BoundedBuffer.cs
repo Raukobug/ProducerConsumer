@@ -7,27 +7,25 @@ namespace ProducerConsumer
     {
 
         public Queue<int> MyQueue = new Queue<int>();
-        public int I = 0;
+        public int Max = 0;
         public BoundedBuffer(int i)
         {
-            I = i;
+            Max = i;
         }
 
         public Boolean IsFull()
         {
-            if (I == MyQueue.Count)
+            if (Max == MyQueue.Count)
             {
                 return false;
             }
             return true;
         }
 
-        public void Put(int i)
+        public void Put(int number)
         {
             if (IsFull()) 
             {
-                var rnd = new Random();
-                int number = rnd.Next(1, 1000);
                 MyQueue.Enqueue(number);
             }
         }
