@@ -13,20 +13,17 @@ namespace ProducerConsumer
             Max = i;
         }
 
-        public Boolean IsFull()
+        public bool IsFull()
         {
-            if (Max == MyQueue.Count)
-            {
-                return false;
-            }
-            return true;
+            return Max != MyQueue.Count;
         }
 
         public void Put(int number)
         {
-            if (IsFull()) 
+            if (!IsFull()) 
             {
                 MyQueue.Enqueue(number);
+                Console.WriteLine("Line added");
             }
         }
 

@@ -15,9 +15,7 @@ namespace ProducerConsumer
             var prod = new Producer(buf, 10);
             var con = new Consumer(buf);
 
-            Parallel.Invoke(prod.Run(), con.Run());
-
-
+            Parallel.Invoke(prod.Run, con.Run);
         }
     }
 }

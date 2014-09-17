@@ -25,7 +25,6 @@ namespace ProducerConsumer
                 var rnd = new Random();
                 int number = rnd.Next(1, 1000);
                 buf.Put(number);
-                Console.WriteLine("Line added");
             }
         }
     }
