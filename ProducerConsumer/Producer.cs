@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ProducerConsumer
 {
@@ -22,9 +18,13 @@ namespace ProducerConsumer
         {
             for (int i = 0; i < HowMany; i++)
             {
-                var rnd = new Random();
-                int number = rnd.Next(1, 1000);
-                buf.Put(number);
+                if (!buf.IsFull())
+                {
+                    var rnd = new Random();
+                    int number = rnd.Next(1, 1000);
+                    buf.Put(number);
+                    Console.WriteLine("Line added");
+                }
             }
         }
     }

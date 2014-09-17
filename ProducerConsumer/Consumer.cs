@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ProducerConsumer
 {
@@ -15,8 +12,11 @@ namespace ProducerConsumer
         }
         public void Run()
         {
-            buf.Take();
-            Console.WriteLine("Line removed");
+            if (buf.MyQueue.Count != 0)
+            {
+                buf.Take();
+                Console.WriteLine("Line removed");
+            }           
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ProducerConsumer
 {
@@ -15,16 +16,16 @@ namespace ProducerConsumer
 
         public bool IsFull()
         {
-            return Max != MyQueue.Count;
+            if (Max == MyQueue.Count)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Put(int number)
         {
-            if (!IsFull()) 
-            {
-                MyQueue.Enqueue(number);
-                Console.WriteLine("Line added");
-            }
+            MyQueue.Enqueue(number);
         }
 
         public int Take()
