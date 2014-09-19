@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace ProducerConsumer
 {
@@ -21,9 +20,9 @@ namespace ProducerConsumer
             while (i < HowMany)
             {
                 int tempI = i;
+                lock (buf)
                 if (!buf.IsFull())
                 {
-                    lock (buf)
                     {
                         var rnd = new Random();
                         int number = rnd.Next(1, 1000);

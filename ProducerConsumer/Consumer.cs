@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace ProducerConsumer
 {
@@ -13,12 +12,16 @@ namespace ProducerConsumer
         public void Run()
         {
             int i = 0;
+            while (buf.MyQueue.Count == 0)
+            {
+                
+            }
             while (i < buf.InQueue)
             {
                 int tempI = i;
+                lock (buf)
                 if (buf.MyQueue.Count != 0)
                 {
-                    lock (buf)
                     {
                         buf.Take();
                         Console.WriteLine("Line removed");
