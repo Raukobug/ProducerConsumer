@@ -16,16 +16,26 @@ namespace ProducerConsumer
 
         public void Run()
         {
-            for (int i = 0; i < HowMany; i++)
+            int i = 0;
+            buf.InQueue = HowMany;
+            while (i < HowMany)
             {
+                int tempI = i;
                 if (!buf.IsFull())
                 {
-                    var rnd = new Random();
-                    int number = rnd.Next(1, 1000);
-                    buf.Put(number);
-                    Console.WriteLine("Line added");
+                    lock (buf)
+                    {
+                        var rnd = new Random();
+                        int number = rnd.Next(1, 1000);
+                        buf.Put(number);
+                        Console.WriteLine("Line added");
+                        i = tempI+1;  
+                    }
+
                 }
             }
+            Console.WriteLine("Producer Done");
+
         }
     }
 }

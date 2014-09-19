@@ -12,11 +12,21 @@ namespace ProducerConsumer
         }
         public void Run()
         {
-            if (buf.MyQueue.Count != 0)
+            int i = 0;
+            while (i < buf.InQueue)
             {
-                buf.Take();
-                Console.WriteLine("Line removed");
-            }           
+                int tempI = i;
+                if (buf.MyQueue.Count != 0)
+                {
+                    lock (buf)
+                    {
+                        buf.Take();
+                        Console.WriteLine("Line removed");
+                        i = tempI + 1;         
+                    }
+                }
+            } 
+            Console.WriteLine("Consumer Done");
         }
 
     }

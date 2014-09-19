@@ -9,6 +9,7 @@ namespace ProducerConsumer
 
         public Queue<int> MyQueue = new Queue<int>();
         public int Max = 0;
+        public int InQueue;
         public BoundedBuffer(int i)
         {
             Max = i;
